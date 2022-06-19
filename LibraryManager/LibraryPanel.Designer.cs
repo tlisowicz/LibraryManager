@@ -31,6 +31,8 @@ namespace LibraryManager
         {
             this.GV_books = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbx_filter_author = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.cb_filter_borrowed = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,46 +50,45 @@ namespace LibraryManager
             this.btn_clear_filters = new System.Windows.Forms.Button();
             this.btn_apply = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btn_add_books = new System.Windows.Forms.Button();
-            this.cbx_edit_category = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.GV_borrowed = new System.Windows.Forms.DataGridView();
-            this.cbx_delete = new System.Windows.Forms.ComboBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.cbx_edit_book = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbx_add_title = new System.Windows.Forms.TextBox();
+            this.cbx_filter_by_user = new System.Windows.Forms.ComboBox();
+            this.tbx_add_author = new System.Windows.Forms.TextBox();
+            this.btn_show_all = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btn_filter_by_user = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cbx_edit_category = new System.Windows.Forms.ComboBox();
+            this.btn_add_books = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.cbx_edit_book = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.cbx_delete = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.tbx_edit_pages = new System.Windows.Forms.TextBox();
-            this.tbx_edit_currency = new System.Windows.Forms.TextBox();
-            this.tbx_edit_price = new System.Windows.Forms.TextBox();
-            this.tbx_edit_author = new System.Windows.Forms.TextBox();
-            this.tbx_edit_name = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tbx_add_category = new System.Windows.Forms.TextBox();
-            this.tbx_add_pages = new System.Windows.Forms.TextBox();
-            this.tbx_add_currency = new System.Windows.Forms.TextBox();
+            this.tbx_edit_pages = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbx_edit_currency = new System.Windows.Forms.TextBox();
             this.tbx_add_price = new System.Windows.Forms.TextBox();
-            this.tbx_add_author = new System.Windows.Forms.TextBox();
-            this.tbx_add_title = new System.Windows.Forms.TextBox();
-            this.btn_delete = new System.Windows.Forms.Button();
+            this.tbx_edit_price = new System.Windows.Forms.TextBox();
+            this.tbx_add_currency = new System.Windows.Forms.TextBox();
+            this.tbx_edit_author = new System.Windows.Forms.TextBox();
+            this.tbx_add_pages = new System.Windows.Forms.TextBox();
             this.btn_edit = new System.Windows.Forms.Button();
+            this.tbx_add_category = new System.Windows.Forms.TextBox();
+            this.tbx_edit_name = new System.Windows.Forms.TextBox();
             this.btn_add_book = new System.Windows.Forms.Button();
+            this.btn_delete = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label21 = new System.Windows.Forms.Label();
-            this.cbx_filter_author = new System.Windows.Forms.ComboBox();
-            this.btn_filter_by_user = new System.Windows.Forms.Button();
-            this.btn_show_all = new System.Windows.Forms.Button();
-            this.cbx_filter_by_user = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbx_return_books = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.GV_books)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -126,6 +127,23 @@ namespace LibraryManager
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(188, 236);
             this.panel1.TabIndex = 0;
+            // 
+            // cbx_filter_author
+            // 
+            this.cbx_filter_author.FormattingEnabled = true;
+            this.cbx_filter_author.Location = new System.Drawing.Point(62, 276);
+            this.cbx_filter_author.Name = "cbx_filter_author";
+            this.cbx_filter_author.Size = new System.Drawing.Size(87, 21);
+            this.cbx_filter_author.TabIndex = 11;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(15, 279);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(41, 13);
+            this.label21.TabIndex = 10;
+            this.label21.Text = "Author:";
             // 
             // cb_filter_borrowed
             // 
@@ -279,9 +297,13 @@ namespace LibraryManager
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cbx_return_books);
             this.tabPage2.Controls.Add(this.label22);
+            this.tabPage2.Controls.Add(this.cbx_filter_by_user);
             this.tabPage2.Controls.Add(this.GV_borrowed);
+            this.tabPage2.Controls.Add(this.btn_show_all);
             this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Controls.Add(this.btn_filter_by_user);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -289,321 +311,6 @@ namespace LibraryManager
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Admin Panel";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btn_add_books
-            // 
-            this.btn_add_books.Location = new System.Drawing.Point(71, 221);
-            this.btn_add_books.Name = "btn_add_books";
-            this.btn_add_books.Size = new System.Drawing.Size(112, 23);
-            this.btn_add_books.TabIndex = 34;
-            this.btn_add_books.Text = "Add Books from file";
-            this.btn_add_books.UseVisualStyleBackColor = true;
-            this.btn_add_books.Click += new System.EventHandler(this.btn_add_books_Click);
-            // 
-            // cbx_edit_category
-            // 
-            this.cbx_edit_category.FormattingEnabled = true;
-            this.cbx_edit_category.Location = new System.Drawing.Point(279, 111);
-            this.cbx_edit_category.Name = "cbx_edit_category";
-            this.cbx_edit_category.Size = new System.Drawing.Size(112, 21);
-            this.cbx_edit_category.TabIndex = 33;
-            // 
-            // GV_borrowed
-            // 
-            this.GV_borrowed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GV_borrowed.Location = new System.Drawing.Point(602, 77);
-            this.GV_borrowed.Name = "GV_borrowed";
-            this.GV_borrowed.Size = new System.Drawing.Size(403, 260);
-            this.GV_borrowed.TabIndex = 32;
-            // 
-            // cbx_delete
-            // 
-            this.cbx_delete.FormattingEnabled = true;
-            this.cbx_delete.Location = new System.Drawing.Point(71, 291);
-            this.cbx_delete.Name = "cbx_delete";
-            this.cbx_delete.Size = new System.Drawing.Size(112, 21);
-            this.cbx_delete.TabIndex = 31;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(30, 294);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(30, 13);
-            this.label20.TabIndex = 30;
-            this.label20.Text = "Title:";
-            // 
-            // cbx_edit_book
-            // 
-            this.cbx_edit_book.FormattingEnabled = true;
-            this.cbx_edit_book.Location = new System.Drawing.Point(279, 29);
-            this.cbx_edit_book.Name = "cbx_edit_book";
-            this.cbx_edit_book.Size = new System.Drawing.Size(112, 21);
-            this.cbx_edit_book.TabIndex = 28;
-            this.cbx_edit_book.SelectedIndexChanged += new System.EventHandler(this.cbx_edit_book_SelectedIndexChanged);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(228, 192);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(40, 13);
-            this.label14.TabIndex = 27;
-            this.label14.Text = "Pages:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(216, 166);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(52, 13);
-            this.label15.TabIndex = 26;
-            this.label15.Text = "Currency:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(232, 140);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(34, 13);
-            this.label16.TabIndex = 25;
-            this.label16.Text = "Price:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(216, 114);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(52, 13);
-            this.label17.TabIndex = 24;
-            this.label17.Text = "Category:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(227, 88);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(41, 13);
-            this.label18.TabIndex = 23;
-            this.label18.Text = "Author:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(238, 62);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(30, 13);
-            this.label19.TabIndex = 22;
-            this.label19.Text = "Title:";
-            // 
-            // tbx_edit_pages
-            // 
-            this.tbx_edit_pages.Location = new System.Drawing.Point(279, 189);
-            this.tbx_edit_pages.Name = "tbx_edit_pages";
-            this.tbx_edit_pages.Size = new System.Drawing.Size(41, 20);
-            this.tbx_edit_pages.TabIndex = 20;
-            // 
-            // tbx_edit_currency
-            // 
-            this.tbx_edit_currency.Location = new System.Drawing.Point(279, 163);
-            this.tbx_edit_currency.Name = "tbx_edit_currency";
-            this.tbx_edit_currency.Size = new System.Drawing.Size(41, 20);
-            this.tbx_edit_currency.TabIndex = 19;
-            // 
-            // tbx_edit_price
-            // 
-            this.tbx_edit_price.Location = new System.Drawing.Point(279, 137);
-            this.tbx_edit_price.Name = "tbx_edit_price";
-            this.tbx_edit_price.Size = new System.Drawing.Size(41, 20);
-            this.tbx_edit_price.TabIndex = 18;
-            // 
-            // tbx_edit_author
-            // 
-            this.tbx_edit_author.Location = new System.Drawing.Point(279, 85);
-            this.tbx_edit_author.Name = "tbx_edit_author";
-            this.tbx_edit_author.Size = new System.Drawing.Size(112, 20);
-            this.tbx_edit_author.TabIndex = 17;
-            // 
-            // tbx_edit_name
-            // 
-            this.tbx_edit_name.Location = new System.Drawing.Point(279, 55);
-            this.tbx_edit_name.Name = "tbx_edit_name";
-            this.tbx_edit_name.Size = new System.Drawing.Size(112, 20);
-            this.tbx_edit_name.TabIndex = 16;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(20, 162);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(40, 13);
-            this.label13.TabIndex = 14;
-            this.label13.Text = "Pages:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(8, 136);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 13);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Currency:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(26, 110);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(34, 13);
-            this.label11.TabIndex = 12;
-            this.label11.Text = "Price:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 84);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(52, 13);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "Category:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(19, 58);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(41, 13);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Author:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(30, 31);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(30, 13);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Title:";
-            // 
-            // tbx_add_category
-            // 
-            this.tbx_add_category.Location = new System.Drawing.Point(71, 81);
-            this.tbx_add_category.Name = "tbx_add_category";
-            this.tbx_add_category.Size = new System.Drawing.Size(112, 20);
-            this.tbx_add_category.TabIndex = 8;
-            // 
-            // tbx_add_pages
-            // 
-            this.tbx_add_pages.Location = new System.Drawing.Point(71, 157);
-            this.tbx_add_pages.Name = "tbx_add_pages";
-            this.tbx_add_pages.Size = new System.Drawing.Size(41, 20);
-            this.tbx_add_pages.TabIndex = 7;
-            // 
-            // tbx_add_currency
-            // 
-            this.tbx_add_currency.Location = new System.Drawing.Point(71, 133);
-            this.tbx_add_currency.Name = "tbx_add_currency";
-            this.tbx_add_currency.Size = new System.Drawing.Size(41, 20);
-            this.tbx_add_currency.TabIndex = 6;
-            // 
-            // tbx_add_price
-            // 
-            this.tbx_add_price.Location = new System.Drawing.Point(71, 107);
-            this.tbx_add_price.Name = "tbx_add_price";
-            this.tbx_add_price.Size = new System.Drawing.Size(41, 20);
-            this.tbx_add_price.TabIndex = 5;
-            // 
-            // tbx_add_author
-            // 
-            this.tbx_add_author.Location = new System.Drawing.Point(71, 55);
-            this.tbx_add_author.Name = "tbx_add_author";
-            this.tbx_add_author.Size = new System.Drawing.Size(112, 20);
-            this.tbx_add_author.TabIndex = 4;
-            // 
-            // tbx_add_title
-            // 
-            this.tbx_add_title.Location = new System.Drawing.Point(71, 29);
-            this.tbx_add_title.Name = "tbx_add_title";
-            this.tbx_add_title.Size = new System.Drawing.Size(112, 20);
-            this.tbx_add_title.TabIndex = 3;
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.Location = new System.Drawing.Point(83, 318);
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(75, 23);
-            this.btn_delete.TabIndex = 2;
-            this.btn_delete.Text = "Delete book";
-            this.btn_delete.UseVisualStyleBackColor = true;
-            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
-            // 
-            // btn_edit
-            // 
-            this.btn_edit.Location = new System.Drawing.Point(292, 212);
-            this.btn_edit.Name = "btn_edit";
-            this.btn_edit.Size = new System.Drawing.Size(75, 23);
-            this.btn_edit.TabIndex = 1;
-            this.btn_edit.Text = "Edit book";
-            this.btn_edit.UseVisualStyleBackColor = true;
-            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
-            // 
-            // btn_add_book
-            // 
-            this.btn_add_book.Location = new System.Drawing.Point(93, 183);
-            this.btn_add_book.Name = "btn_add_book";
-            this.btn_add_book.Size = new System.Drawing.Size(75, 23);
-            this.btn_add_book.TabIndex = 0;
-            this.btn_add_book.Text = "Add book";
-            this.btn_add_book.UseVisualStyleBackColor = true;
-            this.btn_add_book.Click += new System.EventHandler(this.btn_add_book_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "|*.json";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(15, 279);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(41, 13);
-            this.label21.TabIndex = 10;
-            this.label21.Text = "Author:";
-            // 
-            // cbx_filter_author
-            // 
-            this.cbx_filter_author.FormattingEnabled = true;
-            this.cbx_filter_author.Location = new System.Drawing.Point(62, 276);
-            this.cbx_filter_author.Name = "cbx_filter_author";
-            this.cbx_filter_author.Size = new System.Drawing.Size(87, 21);
-            this.cbx_filter_author.TabIndex = 11;
-            // 
-            // btn_filter_by_user
-            // 
-            this.btn_filter_by_user.Location = new System.Drawing.Point(462, 130);
-            this.btn_filter_by_user.Name = "btn_filter_by_user";
-            this.btn_filter_by_user.Size = new System.Drawing.Size(89, 23);
-            this.btn_filter_by_user.TabIndex = 35;
-            this.btn_filter_by_user.Text = "Filter by User";
-            this.btn_filter_by_user.UseVisualStyleBackColor = true;
-            // 
-            // btn_show_all
-            // 
-            this.btn_show_all.Location = new System.Drawing.Point(462, 159);
-            this.btn_show_all.Name = "btn_show_all";
-            this.btn_show_all.Size = new System.Drawing.Size(89, 23);
-            this.btn_show_all.TabIndex = 36;
-            this.btn_show_all.Text = "Show All";
-            this.btn_show_all.UseVisualStyleBackColor = true;
-            // 
-            // cbx_filter_by_user
-            // 
-            this.cbx_filter_by_user.FormattingEnabled = true;
-            this.cbx_filter_by_user.Location = new System.Drawing.Point(462, 103);
-            this.cbx_filter_by_user.Name = "cbx_filter_by_user";
-            this.cbx_filter_by_user.Size = new System.Drawing.Size(89, 21);
-            this.cbx_filter_by_user.TabIndex = 37;
             // 
             // label22
             // 
@@ -615,14 +322,20 @@ namespace LibraryManager
             this.label22.TabIndex = 38;
             this.label22.Text = "Borrowed Books";
             // 
+            // GV_borrowed
+            // 
+            this.GV_borrowed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GV_borrowed.Location = new System.Drawing.Point(602, 77);
+            this.GV_borrowed.Name = "GV_borrowed";
+            this.GV_borrowed.ReadOnly = true;
+            this.GV_borrowed.Size = new System.Drawing.Size(403, 260);
+            this.GV_borrowed.TabIndex = 32;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tbx_add_title);
-            this.groupBox1.Controls.Add(this.cbx_filter_by_user);
             this.groupBox1.Controls.Add(this.tbx_add_author);
-            this.groupBox1.Controls.Add(this.btn_show_all);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.btn_filter_by_user);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.cbx_edit_category);
             this.groupBox1.Controls.Add(this.btn_add_books);
@@ -653,9 +366,309 @@ namespace LibraryManager
             this.groupBox1.Controls.Add(this.btn_delete);
             this.groupBox1.Location = new System.Drawing.Point(31, 22);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(565, 356);
+            this.groupBox1.Size = new System.Drawing.Size(408, 356);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
+            // 
+            // tbx_add_title
+            // 
+            this.tbx_add_title.Location = new System.Drawing.Point(71, 29);
+            this.tbx_add_title.Name = "tbx_add_title";
+            this.tbx_add_title.Size = new System.Drawing.Size(112, 20);
+            this.tbx_add_title.TabIndex = 3;
+            // 
+            // cbx_filter_by_user
+            // 
+            this.cbx_filter_by_user.FormattingEnabled = true;
+            this.cbx_filter_by_user.Location = new System.Drawing.Point(498, 124);
+            this.cbx_filter_by_user.Name = "cbx_filter_by_user";
+            this.cbx_filter_by_user.Size = new System.Drawing.Size(89, 21);
+            this.cbx_filter_by_user.TabIndex = 37;
+            // 
+            // tbx_add_author
+            // 
+            this.tbx_add_author.Location = new System.Drawing.Point(71, 55);
+            this.tbx_add_author.Name = "tbx_add_author";
+            this.tbx_add_author.Size = new System.Drawing.Size(112, 20);
+            this.tbx_add_author.TabIndex = 4;
+            // 
+            // btn_show_all
+            // 
+            this.btn_show_all.Location = new System.Drawing.Point(498, 180);
+            this.btn_show_all.Name = "btn_show_all";
+            this.btn_show_all.Size = new System.Drawing.Size(89, 23);
+            this.btn_show_all.TabIndex = 36;
+            this.btn_show_all.Text = "Show All";
+            this.btn_show_all.UseVisualStyleBackColor = true;
+            this.btn_show_all.Click += new System.EventHandler(this.btn_show_all_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(30, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Title:";
+            // 
+            // btn_filter_by_user
+            // 
+            this.btn_filter_by_user.Location = new System.Drawing.Point(498, 151);
+            this.btn_filter_by_user.Name = "btn_filter_by_user";
+            this.btn_filter_by_user.Size = new System.Drawing.Size(89, 23);
+            this.btn_filter_by_user.TabIndex = 35;
+            this.btn_filter_by_user.Text = "Filter by User";
+            this.btn_filter_by_user.UseVisualStyleBackColor = true;
+            this.btn_filter_by_user.Click += new System.EventHandler(this.btn_filter_by_user_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(19, 58);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Author:";
+            // 
+            // cbx_edit_category
+            // 
+            this.cbx_edit_category.FormattingEnabled = true;
+            this.cbx_edit_category.Location = new System.Drawing.Point(279, 111);
+            this.cbx_edit_category.Name = "cbx_edit_category";
+            this.cbx_edit_category.Size = new System.Drawing.Size(112, 21);
+            this.cbx_edit_category.TabIndex = 33;
+            // 
+            // btn_add_books
+            // 
+            this.btn_add_books.Location = new System.Drawing.Point(71, 221);
+            this.btn_add_books.Name = "btn_add_books";
+            this.btn_add_books.Size = new System.Drawing.Size(112, 23);
+            this.btn_add_books.TabIndex = 34;
+            this.btn_add_books.Text = "Add Books from file";
+            this.btn_add_books.UseVisualStyleBackColor = true;
+            this.btn_add_books.Click += new System.EventHandler(this.btn_add_books_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 84);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(52, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Category:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(228, 192);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(40, 13);
+            this.label14.TabIndex = 27;
+            this.label14.Text = "Pages:";
+            // 
+            // cbx_edit_book
+            // 
+            this.cbx_edit_book.FormattingEnabled = true;
+            this.cbx_edit_book.Location = new System.Drawing.Point(279, 29);
+            this.cbx_edit_book.Name = "cbx_edit_book";
+            this.cbx_edit_book.Size = new System.Drawing.Size(112, 21);
+            this.cbx_edit_book.TabIndex = 28;
+            this.cbx_edit_book.SelectedIndexChanged += new System.EventHandler(this.cbx_edit_book_SelectedIndexChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(216, 166);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(52, 13);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "Currency:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(30, 294);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(30, 13);
+            this.label20.TabIndex = 30;
+            this.label20.Text = "Title:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(232, 140);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(34, 13);
+            this.label16.TabIndex = 25;
+            this.label16.Text = "Price:";
+            // 
+            // cbx_delete
+            // 
+            this.cbx_delete.FormattingEnabled = true;
+            this.cbx_delete.Location = new System.Drawing.Point(71, 291);
+            this.cbx_delete.Name = "cbx_delete";
+            this.cbx_delete.Size = new System.Drawing.Size(112, 21);
+            this.cbx_delete.TabIndex = 31;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(216, 114);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(52, 13);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "Category:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(26, 110);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 13);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Price:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(227, 88);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(41, 13);
+            this.label18.TabIndex = 23;
+            this.label18.Text = "Author:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(238, 62);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(30, 13);
+            this.label19.TabIndex = 22;
+            this.label19.Text = "Title:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(8, 136);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 13);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Currency:";
+            // 
+            // tbx_edit_pages
+            // 
+            this.tbx_edit_pages.Location = new System.Drawing.Point(279, 189);
+            this.tbx_edit_pages.Name = "tbx_edit_pages";
+            this.tbx_edit_pages.Size = new System.Drawing.Size(41, 20);
+            this.tbx_edit_pages.TabIndex = 20;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(20, 162);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(40, 13);
+            this.label13.TabIndex = 14;
+            this.label13.Text = "Pages:";
+            // 
+            // tbx_edit_currency
+            // 
+            this.tbx_edit_currency.Location = new System.Drawing.Point(279, 163);
+            this.tbx_edit_currency.Name = "tbx_edit_currency";
+            this.tbx_edit_currency.Size = new System.Drawing.Size(41, 20);
+            this.tbx_edit_currency.TabIndex = 19;
+            // 
+            // tbx_add_price
+            // 
+            this.tbx_add_price.Location = new System.Drawing.Point(71, 107);
+            this.tbx_add_price.Name = "tbx_add_price";
+            this.tbx_add_price.Size = new System.Drawing.Size(41, 20);
+            this.tbx_add_price.TabIndex = 5;
+            // 
+            // tbx_edit_price
+            // 
+            this.tbx_edit_price.Location = new System.Drawing.Point(279, 137);
+            this.tbx_edit_price.Name = "tbx_edit_price";
+            this.tbx_edit_price.Size = new System.Drawing.Size(41, 20);
+            this.tbx_edit_price.TabIndex = 18;
+            // 
+            // tbx_add_currency
+            // 
+            this.tbx_add_currency.Location = new System.Drawing.Point(71, 133);
+            this.tbx_add_currency.Name = "tbx_add_currency";
+            this.tbx_add_currency.Size = new System.Drawing.Size(41, 20);
+            this.tbx_add_currency.TabIndex = 6;
+            // 
+            // tbx_edit_author
+            // 
+            this.tbx_edit_author.Location = new System.Drawing.Point(279, 85);
+            this.tbx_edit_author.Name = "tbx_edit_author";
+            this.tbx_edit_author.Size = new System.Drawing.Size(112, 20);
+            this.tbx_edit_author.TabIndex = 17;
+            // 
+            // tbx_add_pages
+            // 
+            this.tbx_add_pages.Location = new System.Drawing.Point(71, 157);
+            this.tbx_add_pages.Name = "tbx_add_pages";
+            this.tbx_add_pages.Size = new System.Drawing.Size(41, 20);
+            this.tbx_add_pages.TabIndex = 7;
+            // 
+            // btn_edit
+            // 
+            this.btn_edit.Location = new System.Drawing.Point(292, 212);
+            this.btn_edit.Name = "btn_edit";
+            this.btn_edit.Size = new System.Drawing.Size(75, 23);
+            this.btn_edit.TabIndex = 1;
+            this.btn_edit.Text = "Edit book";
+            this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
+            // 
+            // tbx_add_category
+            // 
+            this.tbx_add_category.Location = new System.Drawing.Point(71, 81);
+            this.tbx_add_category.Name = "tbx_add_category";
+            this.tbx_add_category.Size = new System.Drawing.Size(112, 20);
+            this.tbx_add_category.TabIndex = 8;
+            // 
+            // tbx_edit_name
+            // 
+            this.tbx_edit_name.Location = new System.Drawing.Point(279, 55);
+            this.tbx_edit_name.Name = "tbx_edit_name";
+            this.tbx_edit_name.Size = new System.Drawing.Size(112, 20);
+            this.tbx_edit_name.TabIndex = 16;
+            // 
+            // btn_add_book
+            // 
+            this.btn_add_book.Location = new System.Drawing.Point(93, 183);
+            this.btn_add_book.Name = "btn_add_book";
+            this.btn_add_book.Size = new System.Drawing.Size(75, 23);
+            this.btn_add_book.TabIndex = 0;
+            this.btn_add_book.Text = "Add book";
+            this.btn_add_book.UseVisualStyleBackColor = true;
+            this.btn_add_book.Click += new System.EventHandler(this.btn_add_book_Click);
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Location = new System.Drawing.Point(83, 318);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(75, 23);
+            this.btn_delete.TabIndex = 2;
+            this.btn_delete.Text = "Delete book";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "|*.json";
+            // 
+            // cbx_return_books
+            // 
+            this.cbx_return_books.FormattingEnabled = true;
+            this.cbx_return_books.Location = new System.Drawing.Point(498, 214);
+            this.cbx_return_books.Name = "cbx_return_books";
+            this.cbx_return_books.Size = new System.Drawing.Size(89, 21);
+            this.cbx_return_books.TabIndex = 41;
             // 
             // LibraryPanel
             // 
@@ -741,6 +754,7 @@ namespace LibraryManager
         private System.Windows.Forms.ComboBox cbx_filter_by_user;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cbx_return_books;
     }
 }
 

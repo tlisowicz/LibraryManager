@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9a02883c-83f2-40ca-8360-019cadaa8ad8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="644a0aa5-83fd-4b1c-89ec-ac66d2c55dcd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,9 +22,9 @@
     <MetadataSource Address="http://localhost:8734/Design_Time_Addresses/CRUDBooksLibrary/CRUDService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="37442ef7-03bb-4820-86e0-27799de60b4b" SourceId="1" SourceUrl="http://localhost:8734/Design_Time_Addresses/CRUDBooksLibrary/CRUDService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="99eb0ac3-c566-4a50-9a85-a9da9eb73be7" SourceId="1" SourceUrl="http://localhost:8734/Design_Time_Addresses/CRUDBooksLibrary/CRUDService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="10460a71-bafd-44a0-bb6f-1d4a8490dc24" SourceId="1" SourceUrl="http://localhost:8734/Design_Time_Addresses/CRUDBooksLibrary/CRUDService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="41e4506b-66b0-464c-91f9-d3d895283d0d" SourceId="1" SourceUrl="http://localhost:8734/Design_Time_Addresses/CRUDBooksLibrary/CRUDService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="8c906fb3-2288-4727-bb9c-3afa118c089b" SourceId="1" SourceUrl="http://localhost:8734/Design_Time_Addresses/CRUDBooksLibrary/CRUDService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="dc0d9ee9-b6e0-4ab2-b322-fac3179b0ff5" SourceId="1" SourceUrl="http://localhost:8734/Design_Time_Addresses/CRUDBooksLibrary/CRUDService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

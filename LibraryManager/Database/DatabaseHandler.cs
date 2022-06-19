@@ -159,6 +159,24 @@ namespace LibraryManager.Database
             }
         }
 
+        public List<string> GetNamesOfUnborrowedBooks()
+        {
+            using (var context = new LibraryContext())
+            {
+                var borrowedBooksIds = context.CurrentlyBorrowed
+                    .Select(x => x.BookID)
+                    .Distinct()
+                    .ToList();
+
+                var books = context.Books
+                    .Where(x => !borrowedBooksIds.Contains(x.BookID))
+                    .Select(x => x.Title)
+                    .ToList();
+
+                return books;
+            }
+        }
+
         public List<string> GetCurrencies()
         {
             using(var context = new LibraryContext())
@@ -286,6 +304,11 @@ namespace LibraryManager.Database
                         .ToList();
                 }
 
+                var userNames = context.Users
+                    .Where(x => usersIds.Contains(x.UserID))
+                    .Select(x => x.Name)
+                    .ToList();
+
                 if (usersIds.Count != 0)
                 {
                     foreach (var u in usersIds)
@@ -309,6 +332,7 @@ namespace LibraryManager.Database
                         foreach (var book in booksTitles.Select((title, index) => new { index, title}))
                         {
                             List<string> row = new List<string>();
+                            row.Add(userNames[usersIds.IndexOf(u)]);
                             row.Add(book.title);
                             row.Add(dates[book.index].ToString());
 

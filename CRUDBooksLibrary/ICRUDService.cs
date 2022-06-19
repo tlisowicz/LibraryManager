@@ -23,6 +23,11 @@ namespace CRUDBooksLibrary
         [OperationContract]
         bool DeleteBook(string title);
 
+        [OperationContract]
+        bool AddBookToBorrowed(string user, string book);
+
+        [OperationContract]
+        bool DeleteBookFromBorrowed(string user, string book);
 
         // TODO: dodaj tutaj operacje usługi
     }

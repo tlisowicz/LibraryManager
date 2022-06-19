@@ -153,5 +153,79 @@ namespace CRUDBooksLibrary
                 return false;
             }
         }
+
+        public bool AddBookToBorrowed(string user, string book)
+        {
+            try
+            {
+                using (var context = new LibraryContext())
+                {
+                    int userID = context.Users
+                        .Where(x => x.Name.Equals(user))
+                        .Select(x => x.UserID)
+                        .ToList()[0];
+
+                    int bookID = context.Books
+                        .Where(x => x.Title.Equals(book))
+                        .Select(x => x.BookID)
+                        .ToList()[0];
+
+                    var entity = new CurrentlyBorrowed()
+                    {
+                        UserID = userID,
+                        BookID = bookID,
+                        DateOfBorrowing = DateTime.Now
+                    };
+                    context.CurrentlyBorrowed.Add(entity);
+                    context.SaveChanges();
+                    return true;
+                }
+            } 
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteBookFromBorrowed(string user, string book)
+        {
+            try
+            {
+                using (var context = new LibraryContext())
+                {
+                    int userID = context.Users
+                        .Where(x => x.Name.Equals(user))
+                        .Select(x => x.UserID)
+                        .ToList()[0];
+
+                    int bookID = context.Books
+                        .Where(x => x.Title.Equals(book))
+                        .Select(x => x.BookID)
+                        .ToList()[0];
+
+                    var entity = context.CurrentlyBorrowed
+                        .Where(x => x.UserID == userID && x.BookID == bookID)
+                        .Select(x => x)
+                        .ToList()[0];
+
+                    var bookToHistory = new BorrowingHistory()
+                    {
+                        BookID = entity.BookID,
+                        UserID = entity.UserID,
+                        DateOfBorrowing = entity.DateOfBorrowing,
+                        DateOfReturn = DateTime.Now
+                    };
+                    context.Entry(entity).State = System.Data.Entity.EntityState.Deleted;
+                    context.BorrowingHistory.Add(bookToHistory);
+
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

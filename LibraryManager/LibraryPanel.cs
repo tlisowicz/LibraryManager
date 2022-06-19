@@ -73,6 +73,11 @@ namespace LibraryManager
             cbx_filter_by_user.Items.Clear();
             cbx_filter_by_user.Items.AddRange(databaseHandler.GetUsers().ToArray());
 
+            if (loginWindow.loggedUserRole == LoginWindow.UserRole.USER)
+            {
+                UpdateBorrowedBooksGridView(loginWindow.loggedUserName);
+                return;
+            }
             UpdateBorrowedBooksGridView();
         }
         private void UpdateGridView(List<int> filteredBooksIds = null)
@@ -109,15 +114,68 @@ namespace LibraryManager
             {
                 GV_borrowed.Rows.Add(book.ToArray());
             }
-
-;        }
+        }
 
         private void LibraryPanel_Load(object sender, EventArgs e)
         {    
             UpdateVisuals();
-            if (loginWindow.loggedUserRole == LoginWindow.UserRole.USER || loginWindow.loggedUserRole == LoginWindow.UserRole.GUEST)
+            if (loginWindow.loggedUserRole == LoginWindow.UserRole.GUEST)
             {
                 tabControl1.TabPages.Remove(tabControl1.TabPages[1]);
+                return;
+            }
+            
+            if (loginWindow.loggedUserRole == LoginWindow.UserRole.USER)
+            {
+                groupBox1.Hide();
+               
+                btn_filter_by_user.Click -= btn_filter_by_user_Click;
+                btn_filter_by_user.Click += btn_borrrow_Click;
+                btn_filter_by_user.Text = "Borrow book";
+
+                btn_show_all.Click -= btn_show_all_Click;
+                btn_show_all.Click += btn_return_book_Click;
+                btn_show_all.Text = "Return book";
+
+                UpdateUserVisualControls();
+                return;
+            }
+            cbx_return_books.Hide();
+        }
+
+        private void UpdateUserVisualControls()
+        {
+            cbx_filter_by_user.Items.Clear();
+            cbx_filter_by_user.Items.AddRange(databaseHandler.GetNamesOfUnborrowedBooks().ToArray());
+
+            cbx_return_books.Items.Clear();
+            List<string> bookTitles = new List<string>();
+            foreach (var book in databaseHandler.GetBorrowedBooks(loginWindow.loggedUserName))
+            {
+                bookTitles.Add(book[1]);
+            }
+
+            cbx_return_books.Items.AddRange(bookTitles.ToArray());
+        }
+
+        private void btn_return_book_Click(object sender, EventArgs e)
+        {
+            if (cbx_return_books.SelectedItem == null)
+            {
+                MessageBox.Show("Choose a book");
+                return;
+            }
+
+            using (var client = new CRUDServiceClient())
+            {
+                bool isReturned = client.DeleteBookFromBorrowed(loginWindow.loggedUserName, cbx_return_books.SelectedItem.ToString());
+                if (!isReturned)
+                {
+                    MessageBox.Show("An error occurred during returing a book.");
+                    return;
+                }
+                MessageBox.Show("Book has been returned");
+                UpdateUserVisualControls();
             }
         }
 
@@ -347,6 +405,44 @@ namespace LibraryManager
                 UpdateVisuals();
             }
             
+        }
+
+        private void btn_filter_by_user_Click(object sender, EventArgs e)
+        {
+            if (cbx_filter_by_user.SelectedItem != null)
+            {
+                UpdateBorrowedBooksGridView(cbx_filter_by_user.SelectedItem.ToString());
+                return;
+            }
+            UpdateBorrowedBooksGridView();
+        }
+
+        private void btn_show_all_Click(object sender, EventArgs e)
+        {
+            UpdateBorrowedBooksGridView();
+        }
+
+        private void btn_borrrow_Click(object sender, EventArgs e)
+        {
+            if (databaseHandler.GetBorrowedBooks(loginWindow.loggedUserName).Count == 3)
+            {
+                MessageBox.Show("You can only have 3 books borrowed at the same time. Please return these books" +
+                    "if you want to borrow a new one.");
+                return;
+            }
+
+            using (var client = new CRUDServiceClient())
+            {
+                bool isAdded = client.AddBookToBorrowed(loginWindow.loggedUserName, cbx_filter_by_user.SelectedItem.ToString());
+
+                if (!isAdded)
+                {
+                    MessageBox.Show("An error occured during borrowing a book.");
+                    return;
+                }
+                MessageBox.Show("Books has been borrowed. You have to return book within 1 month.");
+                UpdateBorrowedBooksGridView(loginWindow.loggedUserName);
+            }
         }
     }
 }

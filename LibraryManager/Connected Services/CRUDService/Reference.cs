@@ -38,6 +38,18 @@ namespace LibraryManager.CRUDService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/DeleteBook", ReplyAction="http://tempuri.org/ICRUDService/DeleteBookResponse")]
         System.Threading.Tasks.Task<bool> DeleteBookAsync(string title);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/AddBookToBorrowed", ReplyAction="http://tempuri.org/ICRUDService/AddBookToBorrowedResponse")]
+        bool AddBookToBorrowed(string user, string book);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/AddBookToBorrowed", ReplyAction="http://tempuri.org/ICRUDService/AddBookToBorrowedResponse")]
+        System.Threading.Tasks.Task<bool> AddBookToBorrowedAsync(string user, string book);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/DeleteBookFromBorrowed", ReplyAction="http://tempuri.org/ICRUDService/DeleteBookFromBorrowedResponse")]
+        bool DeleteBookFromBorrowed(string user, string book);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/DeleteBookFromBorrowed", ReplyAction="http://tempuri.org/ICRUDService/DeleteBookFromBorrowedResponse")]
+        System.Threading.Tasks.Task<bool> DeleteBookFromBorrowedAsync(string user, string book);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +109,22 @@ namespace LibraryManager.CRUDService {
         
         public System.Threading.Tasks.Task<bool> DeleteBookAsync(string title) {
             return base.Channel.DeleteBookAsync(title);
+        }
+        
+        public bool AddBookToBorrowed(string user, string book) {
+            return base.Channel.AddBookToBorrowed(user, book);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddBookToBorrowedAsync(string user, string book) {
+            return base.Channel.AddBookToBorrowedAsync(user, book);
+        }
+        
+        public bool DeleteBookFromBorrowed(string user, string book) {
+            return base.Channel.DeleteBookFromBorrowed(user, book);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteBookFromBorrowedAsync(string user, string book) {
+            return base.Channel.DeleteBookFromBorrowedAsync(user, book);
         }
     }
 }
