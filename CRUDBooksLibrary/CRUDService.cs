@@ -88,7 +88,11 @@ namespace CRUDBooksLibrary
 
                     foreach (var book in books)
                     {
-                        AddBook(book.author, book.title, book.price, book.currency, book.pages, book.category);
+                        bool isAdded = AddBook(book.author, book.title, book.price, book.currency, book.pages, book.category);
+                        if (!isAdded)
+                        {
+                            return false;
+                        }
                     }
                     return true;
                 }               
@@ -227,5 +231,46 @@ namespace CRUDBooksLibrary
                 return false;
             }
         }
+
+        public string GenerateSHA256Hash(string input)
+        {
+            var bytes = System.Text.Encoding.UTF8.GetBytes(input);
+            System.Security.Cryptography.SHA256Managed sha256string = new System.Security.Cryptography.SHA256Managed();
+            byte[] hash = sha256string.ComputeHash(bytes);
+
+            StringBuilder hex = new StringBuilder(hash.Length * 2);
+            foreach (byte b in hash)
+            {
+                hex.AppendFormat("{0:x2}", b);
+            }
+            return hex.ToString();
+        }
+
+        public bool AddUser(string name, string password)
+        {
+            try
+            {
+                var encryptedPassword = GenerateSHA256Hash(password);
+                using (var context = new LibraryContext())
+                {
+                    var user = new User()
+                    {
+                        Name = name,
+                        Password = encryptedPassword,
+                        role = User.Role.USER,
+                    };
+
+                    context.Users.Add(user);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
+ 
 }

@@ -127,7 +127,8 @@ namespace LibraryManager
             
             if (loginWindow.loggedUserRole == LoginWindow.UserRole.USER)
             {
-                groupBox1.Hide();
+                NotifyUSer();
+                groupBox1.Enabled = false;
                
                 btn_filter_by_user.Click -= btn_filter_by_user_Click;
                 btn_filter_by_user.Click += btn_borrrow_Click;
@@ -141,10 +142,34 @@ namespace LibraryManager
                 return;
             }
             cbx_return_books.Hide();
+            btn_show_borrowed.Hide();
+            btn_show_history.Hide();
+        }
+
+        private void NotifyUSer()
+        {
+            List<List<string>> borrowedBooks = databaseHandler.GetBorrowedBooks(loginWindow.loggedUserName);
+            List<string> booksToReturn = new List<string>();
+
+            foreach( var book in borrowedBooks)
+            {
+                DateTime dateOfBorrowing = DateTime.Parse(book[book.Count - 1]);
+                if (DateTime.Now <= dateOfBorrowing.AddDays(-2))
+                {
+                    booksToReturn.Add(book[1]);
+                }
+            }
+
+            if (booksToReturn.Count != 0)
+            {
+                MessageBox.Show($"You have to return these books within 2 days:\n{String.Join("\n ", booksToReturn.ToArray())}");
+            }
         }
 
         private void UpdateUserVisualControls()
         {
+            cbx_filter_by_user.Text = "";
+            cbx_return_books.Text = "";
             cbx_filter_by_user.Items.Clear();
             cbx_filter_by_user.Items.AddRange(databaseHandler.GetNamesOfUnborrowedBooks().ToArray());
 
@@ -175,6 +200,7 @@ namespace LibraryManager
                     return;
                 }
                 MessageBox.Show("Book has been returned");
+                UpdateBorrowedBooksGridView(loginWindow.loggedUserName);
                 UpdateUserVisualControls();
             }
         }
@@ -315,7 +341,7 @@ namespace LibraryManager
         private void btn_delete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to delete this book? ", "Deleting", 
-                    MessageBoxButtons.YesNo) == DialogResult.Cancel)
+                    MessageBoxButtons.YesNo) == DialogResult.No)
             {
                 return;
             }
@@ -429,7 +455,7 @@ namespace LibraryManager
                 MessageBox.Show("You can only have 3 books borrowed at the same time. Please return these books" +
                     "if you want to borrow a new one.");
                 return;
-            }
+            }            
 
             using (var client = new CRUDServiceClient())
             {
@@ -442,7 +468,31 @@ namespace LibraryManager
                 }
                 MessageBox.Show("Books has been borrowed. You have to return book within 1 month.");
                 UpdateBorrowedBooksGridView(loginWindow.loggedUserName);
+                UpdateUserVisualControls();
             }
+        }
+
+        private void btn_show_history_Click(object sender, EventArgs e)
+        {
+            GV_borrowed.Columns.Clear();
+            var header = new List<string>() { "book", "Date of borrowing", "Date of returning" };
+
+            GV_borrowed.ColumnCount = header.Count;
+            foreach (DataGridViewColumn column in GV_borrowed.Columns)
+            {
+                column.Name = header[column.Index];
+            }
+
+            List<List<string>> books = databaseHandler.GetReturnedBooks(loginWindow.loggedUserName);
+            foreach (var book in books)
+            {
+                GV_borrowed.Rows.Add(book.ToArray());
+            }
+        }
+
+        private void btn_show_borrowed_Click(object sender, EventArgs e)
+        {
+            UpdateBorrowedBooksGridView(loginWindow.loggedUserName);
         }
     }
 }

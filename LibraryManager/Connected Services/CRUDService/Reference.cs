@@ -50,6 +50,18 @@ namespace LibraryManager.CRUDService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/DeleteBookFromBorrowed", ReplyAction="http://tempuri.org/ICRUDService/DeleteBookFromBorrowedResponse")]
         System.Threading.Tasks.Task<bool> DeleteBookFromBorrowedAsync(string user, string book);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/GenerateSHA256Hash", ReplyAction="http://tempuri.org/ICRUDService/GenerateSHA256HashResponse")]
+        string GenerateSHA256Hash(string input);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/GenerateSHA256Hash", ReplyAction="http://tempuri.org/ICRUDService/GenerateSHA256HashResponse")]
+        System.Threading.Tasks.Task<string> GenerateSHA256HashAsync(string input);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/AddUser", ReplyAction="http://tempuri.org/ICRUDService/AddUserResponse")]
+        bool AddUser(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDService/AddUser", ReplyAction="http://tempuri.org/ICRUDService/AddUserResponse")]
+        System.Threading.Tasks.Task<bool> AddUserAsync(string userName, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -125,6 +137,22 @@ namespace LibraryManager.CRUDService {
         
         public System.Threading.Tasks.Task<bool> DeleteBookFromBorrowedAsync(string user, string book) {
             return base.Channel.DeleteBookFromBorrowedAsync(user, book);
+        }
+        
+        public string GenerateSHA256Hash(string input) {
+            return base.Channel.GenerateSHA256Hash(input);
+        }
+        
+        public System.Threading.Tasks.Task<string> GenerateSHA256HashAsync(string input) {
+            return base.Channel.GenerateSHA256HashAsync(input);
+        }
+        
+        public bool AddUser(string userName, string password) {
+            return base.Channel.AddUser(userName, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddUserAsync(string userName, string password) {
+            return base.Channel.AddUserAsync(userName, password);
         }
     }
 }

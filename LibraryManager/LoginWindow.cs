@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LibraryManager.Database;
+using LibraryManager.CRUDService;
 
 namespace LibraryManager
 {
@@ -40,13 +41,17 @@ namespace LibraryManager
                 return;
             }
 
-            string hashedPassword = databaseHandler.GenerateSHA256Hash(tbx_login_pwd.Text);
-
-            if (!databaseHandler.FetchPassword(tbx_login_name.Text).Equals(hashedPassword))
+            using (var client = new CRUDServiceClient())
             {
-                MessageBox.Show("Incorrect password");
-                return;
+                string hashedPassword = client.GenerateSHA256Hash(tbx_login_pwd.Text);
+
+                if (!databaseHandler.FetchPassword(tbx_login_name.Text).Equals(hashedPassword))
+                {
+                    MessageBox.Show("Incorrect password");
+                    return;
+                }
             }
+            
             loggedUserRole = (UserRole) databaseHandler.GetUserRole(tbx_login_name.Text);
             loggedUserName = tbx_login_name.Text;
             library = new LibraryPanel(this);
@@ -85,17 +90,20 @@ namespace LibraryManager
                 return;
             }
 
-            bool isCreated = databaseHandler.AddUser(tbx_create_name.Text, tbx_create_pwd.Text);
-
-            if (isCreated)
+            using (var client = new CRUDServiceClient())
             {
-                MessageBox.Show("Account successfully created. You can log in now.");
-            }
+                bool isCreated = client.AddUser(tbx_create_name.Text, tbx_create_pwd.Text);
 
-            else
-            {
-                MessageBox.Show("An error occurred while creating an account.");
-            }
+                if (isCreated)
+                {
+                    MessageBox.Show("Account successfully created. You can log in now.");
+                }
+
+                else
+                {
+                    MessageBox.Show("An error occurred while creating an account.");
+                }
+            }    
         }
 
         private void btn_login_guest_Click(object sender, EventArgs e)

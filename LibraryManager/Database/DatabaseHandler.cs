@@ -8,20 +8,6 @@ namespace LibraryManager.Database
 {
     class DatabaseHandler
     {
-        public string GenerateSHA256Hash(string input)
-        {
-            var bytes = System.Text.Encoding.UTF8.GetBytes(input);
-            System.Security.Cryptography.SHA256Managed sha256string = new System.Security.Cryptography.SHA256Managed();
-            byte[] hash = sha256string.ComputeHash(bytes);
-
-            StringBuilder hex = new StringBuilder(hash.Length * 2);
-            foreach (byte b in hash)
-            {
-                hex.AppendFormat("{0:x2}", b);
-            }
-            return hex.ToString();
-        }
-
         public List<string> GetUsers()
         {
             using (var context = new LibraryContext())
@@ -43,32 +29,6 @@ namespace LibraryManager.Database
                     .ToList()[0];
 
                 return password;
-            }
-        }
-
-        public bool AddUser(string name, string password)
-        {
-            try
-            {
-                var encryptedPassword = GenerateSHA256Hash(password);
-                using (var context = new LibraryContext())
-                {
-                    var user = new User()
-                    {
-                        Name = name,
-                        Password = encryptedPassword,
-                        role = User.Role.USER,
-                    };
-
-                    context.Users.Add(user);
-                    context.SaveChanges();
-                    return true;
-                }
-            } 
-            
-            catch (Exception)
-            {
-                return false;
             }
         }
 
@@ -341,8 +301,51 @@ namespace LibraryManager.Database
                     }
                 }
                 return Query;
+            }    
+        }
+
+        public List<List<string>> GetReturnedBooks(string user)
+        {
+            List<List<string>> Query = new List<List<string>>();
+
+            using (var context = new LibraryContext())
+            {
+                int usersId = context.Users
+                    .Where(x => x.Name.Equals(user))
+                   .Select(x => x.UserID)
+                   .ToList()[0];
+
+                var booksIDs = context.BorrowingHistory
+                    .Where(x => x.UserID == usersId)
+                    .Select(x => x.BookID)
+                    .ToList();
+
+                var booksTitles = context.Books
+                    .Where(x => booksIDs.Contains(x.BookID))
+                    .Select(x => x.Title)
+                    .ToList();
+
+                var datesOfBorrowing = context.BorrowingHistory
+                    .Where(x => booksIDs.Contains(x.BookID))
+                    .Select(x => x.DateOfBorrowing)
+                    .ToList();
+
+                var datesOfReturning = context.BorrowingHistory
+                    .Where(x => booksIDs.Contains(x.BookID))
+                    .Select(x => x.DateOfReturn)
+                    .ToList();
+
+                foreach(var book in booksTitles.Select((title, index) => new { index, title }))
+                {
+                    List<string> row = new List<string>();
+
+                    row.Add(book.title);
+                    row.Add(datesOfBorrowing[book.index].ToString());
+                    row.Add(datesOfReturning[book.index].ToString());
+                    Query.Add(row);
+                }
             }
-            
+            return Query;
         }
     }
 

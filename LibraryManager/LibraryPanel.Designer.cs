@@ -50,15 +50,15 @@ namespace LibraryManager
             this.btn_clear_filters = new System.Windows.Forms.Button();
             this.btn_apply = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cbx_return_books = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.cbx_filter_by_user = new System.Windows.Forms.ComboBox();
             this.GV_borrowed = new System.Windows.Forms.DataGridView();
+            this.btn_show_all = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbx_add_title = new System.Windows.Forms.TextBox();
-            this.cbx_filter_by_user = new System.Windows.Forms.ComboBox();
             this.tbx_add_author = new System.Windows.Forms.TextBox();
-            this.btn_show_all = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.btn_filter_by_user = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.cbx_edit_category = new System.Windows.Forms.ComboBox();
             this.btn_add_books = new System.Windows.Forms.Button();
@@ -87,8 +87,10 @@ namespace LibraryManager
             this.tbx_edit_name = new System.Windows.Forms.TextBox();
             this.btn_add_book = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
+            this.btn_filter_by_user = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.cbx_return_books = new System.Windows.Forms.ComboBox();
+            this.btn_show_history = new System.Windows.Forms.Button();
+            this.btn_show_borrowed = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GV_books)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -297,6 +299,8 @@ namespace LibraryManager
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_show_borrowed);
+            this.tabPage2.Controls.Add(this.btn_show_history);
             this.tabPage2.Controls.Add(this.cbx_return_books);
             this.tabPage2.Controls.Add(this.label22);
             this.tabPage2.Controls.Add(this.cbx_filter_by_user);
@@ -312,6 +316,14 @@ namespace LibraryManager
             this.tabPage2.Text = "Admin Panel";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // cbx_return_books
+            // 
+            this.cbx_return_books.FormattingEnabled = true;
+            this.cbx_return_books.Location = new System.Drawing.Point(498, 214);
+            this.cbx_return_books.Name = "cbx_return_books";
+            this.cbx_return_books.Size = new System.Drawing.Size(89, 21);
+            this.cbx_return_books.TabIndex = 41;
+            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -322,6 +334,14 @@ namespace LibraryManager
             this.label22.TabIndex = 38;
             this.label22.Text = "Borrowed Books";
             // 
+            // cbx_filter_by_user
+            // 
+            this.cbx_filter_by_user.FormattingEnabled = true;
+            this.cbx_filter_by_user.Location = new System.Drawing.Point(498, 124);
+            this.cbx_filter_by_user.Name = "cbx_filter_by_user";
+            this.cbx_filter_by_user.Size = new System.Drawing.Size(89, 21);
+            this.cbx_filter_by_user.TabIndex = 37;
+            // 
             // GV_borrowed
             // 
             this.GV_borrowed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -330,6 +350,16 @@ namespace LibraryManager
             this.GV_borrowed.ReadOnly = true;
             this.GV_borrowed.Size = new System.Drawing.Size(403, 260);
             this.GV_borrowed.TabIndex = 32;
+            // 
+            // btn_show_all
+            // 
+            this.btn_show_all.Location = new System.Drawing.Point(498, 180);
+            this.btn_show_all.Name = "btn_show_all";
+            this.btn_show_all.Size = new System.Drawing.Size(89, 23);
+            this.btn_show_all.TabIndex = 36;
+            this.btn_show_all.Text = "Show All";
+            this.btn_show_all.UseVisualStyleBackColor = true;
+            this.btn_show_all.Click += new System.EventHandler(this.btn_show_all_Click);
             // 
             // groupBox1
             // 
@@ -377,30 +407,12 @@ namespace LibraryManager
             this.tbx_add_title.Size = new System.Drawing.Size(112, 20);
             this.tbx_add_title.TabIndex = 3;
             // 
-            // cbx_filter_by_user
-            // 
-            this.cbx_filter_by_user.FormattingEnabled = true;
-            this.cbx_filter_by_user.Location = new System.Drawing.Point(498, 124);
-            this.cbx_filter_by_user.Name = "cbx_filter_by_user";
-            this.cbx_filter_by_user.Size = new System.Drawing.Size(89, 21);
-            this.cbx_filter_by_user.TabIndex = 37;
-            // 
             // tbx_add_author
             // 
             this.tbx_add_author.Location = new System.Drawing.Point(71, 55);
             this.tbx_add_author.Name = "tbx_add_author";
             this.tbx_add_author.Size = new System.Drawing.Size(112, 20);
             this.tbx_add_author.TabIndex = 4;
-            // 
-            // btn_show_all
-            // 
-            this.btn_show_all.Location = new System.Drawing.Point(498, 180);
-            this.btn_show_all.Name = "btn_show_all";
-            this.btn_show_all.Size = new System.Drawing.Size(89, 23);
-            this.btn_show_all.TabIndex = 36;
-            this.btn_show_all.Text = "Show All";
-            this.btn_show_all.UseVisualStyleBackColor = true;
-            this.btn_show_all.Click += new System.EventHandler(this.btn_show_all_Click);
             // 
             // label8
             // 
@@ -410,16 +422,6 @@ namespace LibraryManager
             this.label8.Size = new System.Drawing.Size(30, 13);
             this.label8.TabIndex = 9;
             this.label8.Text = "Title:";
-            // 
-            // btn_filter_by_user
-            // 
-            this.btn_filter_by_user.Location = new System.Drawing.Point(498, 151);
-            this.btn_filter_by_user.Name = "btn_filter_by_user";
-            this.btn_filter_by_user.Size = new System.Drawing.Size(89, 23);
-            this.btn_filter_by_user.TabIndex = 35;
-            this.btn_filter_by_user.Text = "Filter by User";
-            this.btn_filter_by_user.UseVisualStyleBackColor = true;
-            this.btn_filter_by_user.Click += new System.EventHandler(this.btn_filter_by_user_Click);
             // 
             // label9
             // 
@@ -657,18 +659,40 @@ namespace LibraryManager
             this.btn_delete.UseVisualStyleBackColor = true;
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
+            // btn_filter_by_user
+            // 
+            this.btn_filter_by_user.Location = new System.Drawing.Point(498, 151);
+            this.btn_filter_by_user.Name = "btn_filter_by_user";
+            this.btn_filter_by_user.Size = new System.Drawing.Size(89, 23);
+            this.btn_filter_by_user.TabIndex = 35;
+            this.btn_filter_by_user.Text = "Filter by User";
+            this.btn_filter_by_user.UseVisualStyleBackColor = true;
+            this.btn_filter_by_user.Click += new System.EventHandler(this.btn_filter_by_user_Click);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "|*.json";
             // 
-            // cbx_return_books
+            // btn_show_history
             // 
-            this.cbx_return_books.FormattingEnabled = true;
-            this.cbx_return_books.Location = new System.Drawing.Point(498, 214);
-            this.cbx_return_books.Name = "cbx_return_books";
-            this.cbx_return_books.Size = new System.Drawing.Size(89, 21);
-            this.cbx_return_books.TabIndex = 41;
+            this.btn_show_history.Location = new System.Drawing.Point(459, 243);
+            this.btn_show_history.Name = "btn_show_history";
+            this.btn_show_history.Size = new System.Drawing.Size(128, 35);
+            this.btn_show_history.TabIndex = 42;
+            this.btn_show_history.Text = "Show my borrowing hisotry";
+            this.btn_show_history.UseVisualStyleBackColor = true;
+            this.btn_show_history.Click += new System.EventHandler(this.btn_show_history_Click);
+            // 
+            // btn_show_borrowed
+            // 
+            this.btn_show_borrowed.Location = new System.Drawing.Point(459, 284);
+            this.btn_show_borrowed.Name = "btn_show_borrowed";
+            this.btn_show_borrowed.Size = new System.Drawing.Size(128, 35);
+            this.btn_show_borrowed.TabIndex = 43;
+            this.btn_show_borrowed.Text = "Show currently borrowed books";
+            this.btn_show_borrowed.UseVisualStyleBackColor = true;
+            this.btn_show_borrowed.Click += new System.EventHandler(this.btn_show_borrowed_Click);
             // 
             // LibraryPanel
             // 
@@ -755,6 +779,8 @@ namespace LibraryManager
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbx_return_books;
+        private System.Windows.Forms.Button btn_show_history;
+        private System.Windows.Forms.Button btn_show_borrowed;
     }
 }
 

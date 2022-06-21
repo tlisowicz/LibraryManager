@@ -23,6 +23,7 @@ namespace LibraryManager.Database
 
         public DateTime DateOfBorrowing { get; set; }
 
+        [Key, Column(Order = 3)]
         public DateTime DateOfReturn { get; set; }
 
     }
