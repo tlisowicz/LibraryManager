@@ -1,5 +1,5 @@
 # Overwiev
-This project was made to get to know how to implement ORM mapping in C# using Entity Framework and how to use microservices using WCF. 
+This project was made to get to know how to implement ORM mapping in C# using Entity Framework and how to use microservices using WCF. GUI was made in Windows Forms.
 In the application exist 3 types of users: admin, loggged user, guest. 
 * Guest can browse library's offer and create an account.
 * User can browse, borrow, return a book and take a look at his borrowing history.
